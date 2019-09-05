@@ -36,6 +36,7 @@ context = context || new AudioContext();
 analyser = context.createAnalyser();
 canvas = document.getElementById("analyser_render");
 ctx = canvas.getContext("2d");
+  source.disconnect();
 source = context.createMediaElementSource(audio);
 source.connect(analyser);
 analyser.connect(context.destination);
