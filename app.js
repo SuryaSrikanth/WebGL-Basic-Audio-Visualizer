@@ -32,13 +32,11 @@ window.onload = initMp3Player();
 
 function initMp3Player() {
 document.getElementById("audio_box").appendChild(audio);
-context = new AudioContext();
+context = context || new AudioContext();
 analyser = context.createAnalyser();
 canvas = document.getElementById("analyser_render");
-canvas2 = document.getElementById("analyser_render2");
 ctx = canvas.getContext("2d");
-ctx2 = canvas.getContext("2d");
-source = context.createMediaElementSource(audio);
+source = source || context.createMediaElementSource(audio);
 source.connect(analyser);
 analyser.connect(context.destination);
 frameLooper();
