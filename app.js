@@ -30,6 +30,9 @@ bar_height;
 
 
 function initMp3Player() {
+      if(source){
+        source.disconnect();
+    }
 document.getElementById("audio_box").appendChild(audio);
 context =  new AudioContext();
 context.resume();  
