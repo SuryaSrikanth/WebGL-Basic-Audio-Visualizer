@@ -27,7 +27,6 @@ bars,
 bar_x,
 bar_width,
 bar_height;
-window.onload = initMp3Player();
 
 
 function initMp3Player() {
