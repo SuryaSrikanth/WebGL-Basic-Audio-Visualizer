@@ -31,7 +31,8 @@ bar_height;
 
 function initMp3Player() {
 document.getElementById("audio_box").appendChild(audio);
-context = context || new AudioContext();
+context =  new AudioContext();
+context.resume();  
 analyser = context.createAnalyser();
 canvas = document.getElementById("analyser_render");
 ctx = canvas.getContext("2d");
