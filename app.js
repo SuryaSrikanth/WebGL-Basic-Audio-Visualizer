@@ -1,22 +1,12 @@
+function winloaded(){
+var btn = document.createElement("button");
+btn.innerText = "Start";
+btn.setAttribute("id","startbtn");
+document.getElementById('start').appendChild(btn);
+btn.addEventListener("click",initMp3Player,false);
+
+}
 var loc;
-function sourceChange(){
-loc = document.getElementById('file').files[0];
-var fReader = new FileReader();
-fReader.readAsDataURL(loc);
-fReader.onloadend = function(event){
-
-audio.src = event.target.result;
-audio.play();
-}
-}
-var audio = new Audio();
-
-audio.src = "song.mp3";
-audio.setAttribute("style", "width:100%;");
-audio.controls = true;
-audio.loop = true;
-audio.autoplay = true;
-window.addEventListener("load", initMp3Player, false);
 var canvas,
 ctx,
 source,
@@ -27,22 +17,52 @@ bars,
 bar_x,
 bar_width,
 bar_height;
+var audio = new Audio();
 
 
-function initMp3Player() {
-      if(source){
-        source.disconnect();
-    }
-document.getElementById("audio_box").appendChild(audio);
-context =  new AudioContext();
-context.resume();  
-analyser = context.createAnalyser();
-canvas = document.getElementById("analyser_render");
-ctx = canvas.getContext("2d");
-source = context.createMediaElementSource(audio);
-source.connect(analyser);
-analyser.connect(context.destination);
+
+
+audio.src = "song.mp3";
+audio.setAttribute("style", "width:100%;");
+audio.controls = true;
+audio.loop = true;
+audio.autoplay = true;
+window.addEventListener("load", winloaded, false);
+var canvas,
+ctx,
+source,
+context,
+analyser,
+fbc_array,
+bars,
+bar_x,
+bar_width,
+bar_height;
+function sourceChange(){
+    loc = document.getElementById('file').files[0];
+    var fReader = new FileReader();
+    fReader.readAsDataURL(loc);
+    fReader.onloadend = function(event){
+    audio.src = event.target.result;
+    audio.play();
 frameLooper();
+    }
+    }
+function initMp3Player() {
+    document.getElementById("start").remove();
+    // btn.addEventListener("click",()=>{},false);
+    if(source){
+        source.disconnect();
+    } 
+    document.getElementById("audio_box").appendChild(audio);
+context = context || new AudioContext();
+    analyser = context.createAnalyser();
+    canvas = document.getElementById("analyser_render");
+    ctx = canvas.getContext("2d");
+    source = context.createMediaElementSource(audio);
+    source.connect(analyser);
+    analyser.connect(context.destination);
+    frameLooper();
 }
 
 function frameLooper() {
