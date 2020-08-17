@@ -1,5 +1,5 @@
 # WebGL-Basic-Audio-Visualizer
-Site at : https://suryasrikanth.github.io/WebGL-Basic-Audio-Visualizer/
+Site at : https://suryasrikanth.github.io/WebGL-Basic-Audio-Visualizer <br>
 Made when learning basics of webgl
 Works in all browsers except Chrome.
 To make it work in chrome reload the page once it loads.
